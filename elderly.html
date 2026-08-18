@@ -58,9 +58,9 @@
       <div class="select-pill">
         <select id="filter-consent">
           <option value="">동의 상태 전체</option>
-          <option value="CONSENTED">동의</option>
-          <option value="NOT_CONSENTED">미동의</option>
-          <option value="WITHDRAWN">철회</option>
+          <option value="consented">동의</option>
+          <option value="not_consented">미동의</option>
+          <option value="withdrawn">철회</option>
         </select>
       </div>
       <div class="select-pill">
@@ -130,9 +130,9 @@
         <div class="field">
           <label for="f-consent">자동전화 동의 상태 *</label>
           <select id="f-consent" required>
-            <option value="CONSENTED">동의</option>
-            <option value="NOT_CONSENTED">미동의</option>
-            <option value="WITHDRAWN">철회</option>
+            <option value="consented">동의</option>
+            <option value="not_consented">미동의</option>
+            <option value="withdrawn">철회</option>
           </select>
         </div>
         <div class="field">
@@ -164,10 +164,10 @@ let lastLoadedContent = [];
 let usingMock = false;
 
 const MOCK_ELDERS = [
-  { id: 10, displayName:"박○자", phone:"010-1111-2222", address:"서울특별시 관악구 은천로 41", regionCode:"11620", consentStatus:"CONSENTED", age:82, healthNote:"고혈압", updatedAt:"2026-08-18T01:00:00Z" },
-  { id: 11, displayName:"김○순", phone:"010-2222-3333", address:"서울특별시 관악구 신림로 12", regionCode:"11620", consentStatus:"CONSENTED", age:79, healthNote:"당뇨", updatedAt:"2026-08-17T22:10:00Z" },
-  { id: 12, displayName:"이○호", phone:"010-3333-4444", address:"서울특별시 관악구 봉천로 88", regionCode:"11620", consentStatus:"NOT_CONSENTED", age:85, healthNote:"", updatedAt:"2026-08-16T09:40:00Z" },
-  { id: 13, displayName:"최○남", phone:"010-4444-5555", address:"서울특별시 관악구 신림로 200", regionCode:"11620", consentStatus:"WITHDRAWN", age:88, healthNote:"거동 불편", updatedAt:"2026-08-15T14:22:00Z" },
+  { id: 10, displayName:"박○자", phone:"010-1111-2222", address:"서울특별시 관악구 은천로 41", regionCode:"11620", consentStatus:"consented", age:82, healthNote:"고혈압", updatedAt:"2026-08-18T01:00:00Z" },
+  { id: 11, displayName:"김○순", phone:"010-2222-3333", address:"서울특별시 관악구 신림로 12", regionCode:"11620", consentStatus:"consented", age:79, healthNote:"당뇨", updatedAt:"2026-08-17T22:10:00Z" },
+  { id: 12, displayName:"이○호", phone:"010-3333-4444", address:"서울특별시 관악구 봉천로 88", regionCode:"11620", consentStatus:"not_consented", age:85, healthNote:"", updatedAt:"2026-08-16T09:40:00Z" },
+  { id: 13, displayName:"최○남", phone:"010-4444-5555", address:"서울특별시 관악구 신림로 200", regionCode:"11620", consentStatus:"withdrawn", age:88, healthNote:"거동 불편", updatedAt:"2026-08-15T14:22:00Z" },
 ];
 
 function fmtDate(iso){
@@ -269,14 +269,14 @@ function openForm(elder){
     $("#f-name").value = elder.displayName || "";
     $("#f-phone").value = elder.phone || "";
     $("#f-address").value = elder.address || "";
-    $("#f-consent").value = elder.consentStatus || "CONSENTED";
+    $("#f-consent").value = elder.consentStatus || "consented";
     $("#f-birth").value = "";
     $("#f-health").value = elder.healthNote || "";
   }else{
     $("#form-eyebrow").textContent = "노인 관리 · 등록";
     $("#form-title").textContent = "노인 등록";
     $("#f-id").value = "";
-    $("#f-consent").value = "CONSENTED";
+    $("#f-consent").value = "consented";
   }
   $("#form-modal").hidden = false;
   document.body.classList.add("modal-open");

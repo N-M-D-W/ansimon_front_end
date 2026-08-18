@@ -55,7 +55,7 @@ function notify(message, opts = {}) {
 }
 
 /* ── 동의 상태 라벨 ── */
-const CONSENT_LABEL = { CONSENTED: "동의", NOT_CONSENTED: "미동의", WITHDRAWN: "철회" };
+const CONSENT_LABEL = { consented: "동의", not_consented: "미동의", withdrawn: "철회" };
 const TRISTATE_LABEL = { YES: "예", NO: "아니오", UNKNOWN: "확인 안 됨" };
 const CONTACT_LABEL = {
   PENDING: "통화 전", READY_FOR_REVIEW: "발신 준비", SCHEDULED: "발신 예정",

@@ -22,10 +22,6 @@
      차가운 남색 = 시스템·계획·평상.
      따뜻한 색   = 온도, 그리고 온도 때문에 위험한 사람. 그 외엔 절대 쓰지 않는다.
    덕분에 화면에서 따뜻한 픽셀을 찾으면 그게 곧 오늘의 일이다.
-
-   차트 색은 dataviz 검증기 통과값:
-     light  surface #F5F8FC : #2F5AC4 · #12907B · #D2701F · #B62318  → ALL PASS
-     dark   surface #0A1730 : #17A088 · #D07F31                      → ALL PASS
    ═══════════════════════════════════════════════════════════════ */
 :root{
   --ice:#EEF3FA;
@@ -51,9 +47,7 @@
 
   --glass-light:rgba(245,250,247,.70);
   --glass-nav:rgba(250,253,251,.74);
-  --glass-dark:rgba(8,24,42,.78);
   --glass-edge:rgba(255,255,255,.66);
-  --glass-edge-dark:rgba(255,255,255,.18);
 
   --kr:"S-Core Dream",-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",
        "Malgun Gothic",system-ui,sans-serif;
@@ -79,6 +73,7 @@ h1,h2,h3,p,figure,dl,dd{margin:0}
 ul{margin:0;padding:0;list-style:none}
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 :focus-visible{outline:2px solid var(--navy);outline-offset:3px;border-radius:4px}
+[hidden]{display:none!important}
 
 /* 유틸 타입 — 데이터와 라벨만 mono 를 입는다 */
 .mono{font-family:var(--mono);font-feature-settings:"tnum" 1}
@@ -139,82 +134,6 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   backdrop-filter:blur(18px) saturate(135%);
 }
 
-/* ─── 히어로 ─── */
-.hero{
-  background:rgba(245,250,247,.70);
-  background-image:linear-gradient(145deg,rgba(255,255,255,.34),rgba(221,239,226,.08));
-  border:1px solid var(--glass-edge);border-radius:var(--r-xl);padding:34px 38px 26px;
-  box-shadow:var(--glass-lift);margin-bottom:16px;
-  -webkit-backdrop-filter:blur(22px) saturate(135%);
-  backdrop-filter:blur(22px) saturate(135%);
-}
-.hero-top{display:flex;align-items:flex-end;gap:40px;flex-wrap:wrap;margin-bottom:30px}
-.hero-say{flex:1;min-width:340px}
-.hero h1{
-  font-size:clamp(30px,3.3vw,44px);font-weight:600;letter-spacing:-.045em;
-  line-height:1.14;margin:14px 0 12px;
-}
-.hero h1 em{font-style:normal;color:var(--heat-hi);font-weight:700}
-.hero .thesis{font-size:15px;color:var(--ink-2);font-weight:300;letter-spacing:-.01em}
-.hero .thesis b{font-weight:600;color:var(--ink-1)}
-
-/* 큰 숫자 — 극세 웨이트, 라벨은 아주 작게. 대비가 전부다. */
-.figs{display:flex;gap:42px;flex-wrap:wrap}
-.fig .eyebrow{display:block;margin-bottom:2px}
-.fig b{
-  display:block;font-size:66px;font-weight:100;line-height:.92;letter-spacing:-.05em;
-  color:var(--deep);font-variant-numeric:tabular-nums;
-}
-.fig b i{font-style:normal;font-size:17px;font-weight:300;margin-left:5px;color:var(--ink-3)}
-.fig.hot b{color:var(--heat-hi);font-weight:200}
-
-/* ─── 데이터 출처 배너: 무엇이 진짜인지 항상 말해 둔다 ─── */
-.src-banner{
-  display:flex;align-items:center;gap:10px 16px;flex-wrap:wrap;margin-bottom:12px;
-  padding:11px 18px;border-radius:999px;background:var(--glass-nav);
-  border:1px solid var(--glass-edge);box-shadow:var(--lift);
-  font-family:var(--mono);font-size:11px;letter-spacing:.03em;color:var(--ink-2);
-  -webkit-backdrop-filter:blur(18px) saturate(135%);backdrop-filter:blur(18px) saturate(135%);
-}
-.src-banner .s{display:inline-flex;align-items:center;gap:6px}
-.src-banner .s i{width:7px;height:7px;border-radius:50%;flex:none;font-style:normal}
-.src-banner .s.live i{background:var(--teal)}
-.src-banner .s.mock i{background:var(--ink-4)}
-.src-banner .s.mock{color:var(--ink-3)}
-.src-banner .lead{font-family:var(--kr);font-size:12px;color:var(--ink-1);font-weight:500}
-
-/* ─── ML 위험도 (백엔드 실측) ─── */
-.ml-risk{
-  display:flex;align-items:center;gap:16px;margin-top:18px;padding:14px 16px;
-  border-radius:var(--r-md);background:rgba(255,255,255,.42);
-  border:1px solid rgba(255,255,255,.6);max-width:440px;
-}
-.ml-risk-body{flex:1;min-width:0}
-.ml-risk-line{display:flex;align-items:baseline;gap:11px;margin-top:3px}
-.ml-risk-line b{font-size:30px;font-weight:200;letter-spacing:-.04em;color:var(--deep);line-height:1}
-.ml-risk-meta{display:block;font-size:10.5px;color:var(--ink-3);margin-top:5px}
-.ml-risk.is-hot .ml-risk-line b{color:var(--heat-hi);font-weight:300}
-.ml-risk.is-off{opacity:.62}
-
-/* ─── 시그니처: 오늘의 열 띠 ─── */
-.ribbon-head{display:flex;align-items:baseline;gap:8px 14px;margin-bottom:10px;flex-wrap:wrap}
-.ribbon-head h2{font-size:13px;font-weight:500;letter-spacing:-.01em;white-space:nowrap}
-.ribbon-head .note{font-family:var(--mono);font-size:11px;color:var(--ink-3);margin-left:auto;white-space:nowrap}
-.ribbon{position:relative}
-.ribbon svg{display:block;width:100%;height:auto;overflow:visible}
-.ribbon .bar{transition:opacity .16s}
-.ribbon.hovering .bar{opacity:.42}
-.ribbon.hovering .bar.on{opacity:1}
-
-.tip{
-  position:absolute;pointer-events:none;opacity:0;transform:translate(-50%,-124%);
-  background:var(--deep);color:#fff;border-radius:10px;padding:9px 13px;z-index:9;
-  font-size:12.5px;line-height:1.4;white-space:nowrap;transition:opacity .12s;
-  box-shadow:0 16px 34px -14px rgba(11,26,56,.7);
-}
-.tip b{font-family:var(--mono);font-weight:500;font-size:13.5px;display:block}
-.tip s{display:block;text-decoration:none;color:#9FB6E4;font-size:11px;margin-top:2px}
-
 /* ─── 그리드 ─── */
 .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
 .c7{grid-column:span 7}.c5{grid-column:span 5}
@@ -227,17 +146,15 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   -webkit-backdrop-filter:blur(22px) saturate(135%);
   backdrop-filter:blur(22px) saturate(135%);
 }
-.card.dark{
-  background:rgba(8,24,42,.78);color:#fff;border-color:var(--glass-edge-dark);
-  box-shadow:0 26px 74px -34px rgba(0,8,12,.78),inset 0 1px 0 rgba(255,255,255,.11);
-  -webkit-backdrop-filter:blur(24px) saturate(125%);
-  backdrop-filter:blur(24px) saturate(125%);
-}
 .head{display:flex;align-items:flex-start;gap:14px;margin-bottom:20px}
 .head h2{font-size:19px;font-weight:600;letter-spacing:-.03em}
 .head p{font-size:12.5px;color:var(--ink-3);font-weight:300;margin-top:4px}
-.card.dark .head p{color:#8CA2CC}
 .head .end{margin-left:auto;display:flex;gap:7px;align-items:center}
+.head .end select{
+  font-family:var(--mono);font-size:11px;letter-spacing:.02em;color:var(--ink-2);
+  border:1px solid var(--rule);border-radius:999px;padding:6px 10px;
+  background:rgba(255,255,255,.6);
+}
 .pill-btn{
   font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--ink-2);
   border:1px solid var(--rule);border-radius:999px;padding:6px 13px;transition:all .16s;
@@ -246,93 +163,41 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .pill-btn:hover{border-color:var(--navy-200);color:var(--navy-ink);background:var(--navy-100)}
 .pill-btn.solid{background:var(--navy);border-color:var(--navy);color:#fff}
 .pill-btn.solid:hover{background:var(--navy-ink);border-color:var(--navy-ink);color:#fff}
+.pill-btn:disabled{opacity:.48;cursor:wait;transform:none}
 
 /* ─── 1차 대시보드: 어르신 목록 ─── */
 .elder-list{display:grid;gap:2px}
 .elder-row{
-  display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:12px;
+  display:grid;grid-template-columns:minmax(0,1fr) auto auto;align-items:center;gap:12px;
   padding:13px 4px;border-top:1px solid var(--rule-2);border-radius:var(--r-md);
-  transition:background .16s,transform .16s;
+  transition:background .16s;
 }
 .elder-row:first-child{border-top:0;padding-top:4px}
 .elder-row:hover{background:rgba(255,255,255,.26)}
-.elder-open{
-  display:grid;grid-template-columns:48px minmax(0,1fr);gap:13px;align-items:center;
-  min-width:0;text-align:left;border-radius:12px;padding:4px;
+.elder-name{
+  display:grid;grid-template-columns:48px minmax(0,1fr);grid-template-rows:auto auto;
+  column-gap:13px;align-items:center;min-width:0;text-align:left;border-radius:12px;
+  padding:4px;color:inherit;text-decoration:none;
+}
+.elder-name .elder-av{grid-row:1 / span 2}
+.elder-name b{font-size:15px;font-weight:600;letter-spacing:-.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.elder-name>span:not(.elder-av){
+  font-family:var(--mono);font-size:10.5px;color:var(--ink-3);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
 }
 .elder-av{
   width:48px;height:48px;border-radius:16px;display:grid;place-items:center;
   background:linear-gradient(145deg,#E7F7FF,#BDEEFF);border:1px solid rgba(47,90,196,.12);
   color:var(--navy-ink);font-weight:700;font-size:14px;box-shadow:inset 0 1px 0 #fff;
 }
-.elder-copy{display:block;min-width:0;overflow:hidden}
-.elder-title{display:flex;align-items:center;gap:8px;min-width:0}
-.elder-title b{font-size:15px;font-weight:600;letter-spacing:-.02em;white-space:nowrap}
-.elder-title span{font-family:var(--mono);font-size:10px;color:var(--ink-4)}
 .risk-chip{
   font-family:var(--mono)!important;font-size:9.5px!important;letter-spacing:.05em;
   padding:3px 7px;border-radius:999px;background:var(--navy-100);color:var(--navy-ink)!important;
+  white-space:nowrap;
 }
 .risk-chip.critical{background:#FBE7E3;color:var(--heat-hi)!important}
 .risk-chip.high{background:#FCEEDC;color:#A65B18!important}
-.elder-meta{font-family:var(--mono);font-size:10.5px;color:var(--ink-3);margin-top:4px}
-.elder-summary{display:block;max-width:100%;font-size:12.5px;color:var(--ink-2);font-weight:300;margin-top:5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.call-one{
-  width:42px;height:42px;border-radius:50%;display:grid;place-items:center;flex:none;
-  color:var(--navy);background:rgba(255,255,255,.48);border:1px solid var(--navy-200);
-  transition:transform .16s,background .16s,color .16s;box-shadow:0 8px 24px -16px rgba(11,26,56,.7);
-}
-.call-one:hover{transform:translateY(-2px);background:var(--navy);color:#fff}
-.call-one.called{color:var(--heat);border-color:#E9CBA9;background:rgba(255,247,236,.62)}
-.call-one.is-calling{color:#fff;background:var(--teal);border-color:var(--teal)}
-.pill-btn:disabled,.call-one:disabled{opacity:.48;cursor:wait;transform:none}
-
-/* ─── 어두운 카드: 42통 점 격자 ─── */
-.dark-fig{display:flex;align-items:flex-end;gap:26px;margin-bottom:24px}
-.dark-fig b{
-  font-size:76px;font-weight:100;line-height:.86;letter-spacing:-.055em;color:#fff;
-  font-variant-numeric:tabular-nums;
-}
-.dark-fig .side{padding-bottom:8px}
-.dark-fig .side .eyebrow{color:#7E95C2;display:block}
-.dark-fig .side em{
-  font-style:normal;font-family:var(--mono);font-size:14px;color:#C8D6F0;display:block;margin-top:3px;
-}
-.dots{display:grid;grid-template-columns:repeat(9,1fr);gap:13px;
-      flex:1;align-content:center;margin-bottom:20px}
-.dot{width:100%;aspect-ratio:1;border-radius:50%;transition:transform .14s,box-shadow .14s;cursor:default}
-.dot:hover{transform:scale(1.42)}
-.dot.done{background:var(--teal-dk)}
-.dot.act {background:var(--heat-dk)}
-.dot.none{background:transparent;box-shadow:inset 0 0 0 2px #47608F}
-.dot.fail{background:#22355C}
-.next{
-  margin-top:auto;padding:16px 0 14px;border-top:1px solid #1C2E52;
-  display:flex;align-items:baseline;gap:12px;
-}
-.next .t{font-family:var(--mono);font-size:22px;font-weight:300;color:#fff;letter-spacing:-.02em}
-.next .d{font-size:12.5px;color:#93A9D2;font-weight:300}
-.next .d b{color:#C8D6F0;font-weight:400}
-.dkey{display:flex;flex-wrap:wrap;gap:7px 18px;padding-top:14px;border-top:1px solid #1C2E52}
-.dkey li{
-  display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;color:#93A9D2;
-}
-.dkey i{width:9px;height:9px;border-radius:50%;flex:none;font-style:normal}
-.dkey b{color:#fff;font-weight:500;margin-left:2px}
-
-/* ─── 발신 진행 ─── */
-.flow{display:flex;gap:3px;height:15px;margin:4px 0 18px}
-.flow i{display:block;height:100%;border-radius:4px;transition:filter .16s}
-.flow i:first-child{border-radius:999px 4px 4px 999px}
-.flow i:last-child{border-radius:4px 999px 999px 4px}
-.flow i:hover{filter:brightness(1.12)}
-.flow-key li{
-  display:flex;align-items:center;gap:9px;font-size:12.5px;color:var(--ink-2);
-  padding:7px 0;border-top:1px solid var(--rule-2);font-weight:300;
-}
-.flow-key li:first-child{border-top:0}
-.flow-key i{width:8px;height:8px;border-radius:2px;flex:none}
-.flow-key b{margin-left:auto;font-family:var(--mono);font-weight:400;color:var(--ink-1);font-size:13px}
+.elder-empty{padding:16px 4px;font-size:12.5px;color:var(--ink-3)}
 
 /* ─── 표 ─── */
 .tw{overflow-x:auto;margin:0 -28px;padding:0 28px}
@@ -346,79 +211,10 @@ tbody td{padding:15px 14px;border-bottom:1px solid var(--rule-2);vertical-align:
 tbody tr:last-child td{border-bottom:0}
 tbody tr{transition:background .14s}
 tbody tr:hover{background:rgba(255,255,255,.34)}
-.nm b{font-weight:500;font-size:14px;display:block;letter-spacing:-.01em}
-.nm span{font-family:var(--mono);font-size:10.5px;color:var(--ink-4);letter-spacing:.04em}
-.state{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:300}
-.state i{width:7px;height:7px;border-radius:50%;flex:none}
-/* 답변 — 알약을 겹겹이 쌓지 않는다. 라벨은 작게 죽이고 값만 살린다. */
-.ans{display:grid;grid-template-columns:126px 126px;gap:5px 14px}
-.ans div{display:flex;gap:7px;align-items:baseline;font-size:12px}
-.ans dt{font-family:var(--mono);font-size:10px;letter-spacing:.06em;color:var(--ink-4);
-        white-space:nowrap;width:48px;flex:none}
-.ans dd{font-weight:400;color:var(--ink-2)}
-.ans dd.flag{color:var(--heat-hi);font-weight:500}
-.ans dd.warm{color:var(--heat);font-weight:500}
-.ans dd.off{color:var(--ink-4);font-weight:300}
-.sum{color:var(--ink-2);font-weight:300;line-height:1.55;max-width:38ch;font-size:12.5px}
-.sum em{font-style:normal;color:var(--heat-hi);font-weight:500}
-.sum s{text-decoration:none;color:var(--ink-3);font-weight:400}
-.cf{display:flex;align-items:center;gap:9px}
-.cf .tr{width:44px;height:5px;border-radius:3px;background:var(--navy-100);overflow:hidden;flex:none}
-.cf .fl{display:block;height:100%;background:var(--navy);border-radius:3px}
-.cf span{font-family:var(--mono);font-size:11.5px;color:var(--ink-2)}
+tbody td a{color:var(--navy-ink);font-weight:500;text-decoration:none}
+tbody td a:hover{text-decoration:underline}
 
-/* ─── 쉼터 ─── */
-.sh{display:block;padding:14px 0;border-top:1px solid var(--rule-2)}
-.sh:first-child{border-top:0}
-.sh-top{display:flex;align-items:center;gap:14px}
-.sh .body{flex:1;min-width:0}
-.sh b{font-size:13.5px;font-weight:400;display:block;letter-spacing:-.01em;
-      white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.sh span{font-family:var(--mono);font-size:10.5px;color:var(--ink-4)}
-.sh .w{font-family:var(--mono);font-size:17px;font-weight:300;color:var(--ink-1);white-space:nowrap}
-.sh .w i{font-style:normal;font-size:11px;color:var(--ink-4);margin-left:2px}
-.sh.shut b,.sh.shut .w{color:var(--ink-4)}
-.sh.shut .w{font-size:11px;letter-spacing:.06em}
-.sh-people{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}
-.sh-person{
-  display:inline-flex;align-items:center;gap:6px;padding:5px 8px;border-radius:999px;
-  background:rgba(255,255,255,.42);border:1px solid rgba(255,255,255,.58);
-  font-family:var(--kr)!important;font-size:10.5px!important;color:var(--ink-2)!important;
-}
-.sh-person i{width:6px;height:6px;border-radius:50%;background:var(--teal);font-style:normal}
-.sh-person small{font-family:var(--mono);font-size:9.5px;color:var(--ink-3)}
-
-/* ─── 어르신 상세 팝업 + 알림 ─── */
-[hidden]{display:none!important}
-body.modal-open{overflow:hidden}
-.modal{
-  position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:20px;
-  background:rgba(4,17,13,.48);-webkit-backdrop-filter:blur(9px);backdrop-filter:blur(9px);
-}
-.modal-card{
-  width:min(620px,100%);max-height:min(820px,calc(100vh - 40px));overflow:auto;
-  padding:26px;border-radius:28px;background:rgba(247,252,249,.92);
-  border:1px solid rgba(255,255,255,.78);box-shadow:0 36px 100px -28px rgba(0,12,9,.76);
-  -webkit-backdrop-filter:blur(26px) saturate(130%);backdrop-filter:blur(26px) saturate(130%);
-}
-.modal-head{display:flex;align-items:flex-start;gap:14px}
-.modal-head h2{font-size:22px;font-weight:650;letter-spacing:-.03em}
-.modal-head p{font-family:var(--mono);font-size:10.5px;color:var(--ink-3);margin-top:4px}
-.modal-close{margin-left:auto;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:var(--navy-100);color:var(--navy-ink)}
-.modal-profile{display:flex;align-items:center;gap:14px;margin:22px 0 18px;padding:15px;border-radius:18px;background:rgba(226,242,235,.64)}
-.modal-profile .elder-av{width:56px;height:56px;border-radius:18px}
-.modal-profile b{font-size:18px;font-weight:600}
-.modal-profile span{display:block;font-family:var(--mono);font-size:10.5px;color:var(--ink-3);margin-top:3px}
-.modal-section{padding:17px 0;border-top:1px solid var(--rule)}
-.modal-section h3{font-size:12px;font-weight:600;color:var(--ink-2);margin-bottom:8px}
-.modal-summary{font-size:15px;line-height:1.75;color:var(--ink-1)}
-.modal-summary.important{color:var(--heat-hi);font-weight:500}
-.modal-facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
-.modal-facts div{padding:10px 12px;border-radius:12px;background:rgba(255,255,255,.48)}
-.modal-facts dt{font-family:var(--mono);font-size:9.5px;color:var(--ink-4)}
-.modal-facts dd{font-size:12.5px;color:var(--ink-2);margin-top:3px}
-.modal-actions{display:flex;justify-content:flex-end;gap:8px;padding-top:18px}
-.modal-call{display:inline-flex;align-items:center;gap:8px;padding:9px 15px}
+/* ─── 알림 ─── */
 .toast{
   position:fixed;left:50%;bottom:24px;z-index:120;transform:translate(-50%,18px);
   max-width:min(520px,calc(100vw - 28px));padding:11px 16px;border-radius:999px;
@@ -430,8 +226,8 @@ body.modal-open{overflow:hidden}
 
 /* 통화 연결 중 — 실제 전화가 도는 동안 행이 살아 있음을 보여준다 */
 @keyframes ring{0%,100%{opacity:1}50%{opacity:.45}}
-.call-one.is-calling{animation:ring 1.1s ease-in-out infinite}
 .elder-row.is-calling{background:rgba(18,144,123,.10)}
+.elder-row.is-calling .pill-btn{animation:ring 1.1s ease-in-out infinite}
 
 /* ─── 푸터 ─── */
 .foot{
@@ -442,11 +238,7 @@ body.modal-open{overflow:hidden}
 .foot b{color:#fff;font-weight:400}
 
 /* ─── 로드 시퀀스 ─── */
-@keyframes rise{from{transform:scaleY(.02);opacity:0}to{transform:scaleY(1);opacity:1}}
-@keyframes drop{from{transform:translateY(-9px);opacity:0}to{transform:translateY(0);opacity:1}}
 @keyframes fade{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:translateY(0)}}
-.ribbon .bar{transform-origin:bottom;animation:rise .5s cubic-bezier(.2,.75,.3,1) backwards}
-.ribbon .mark{animation:drop .45s cubic-bezier(.2,.8,.3,1) .95s backwards}
 .reveal{animation:fade .55s cubic-bezier(.2,.75,.3,1) backwards}
 @media (prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important}
@@ -455,7 +247,6 @@ body.modal-open{overflow:hidden}
 /* ─── 반응형 ─── */
 @media (max-width:1180px){
   .c7,.c5,.c8,.c4{grid-column:span 12}
-  .figs{gap:30px}.fig b{font-size:54px}
 }
 @media (max-width:760px){
   body{background-attachment:scroll}
@@ -463,25 +254,13 @@ body.modal-open{overflow:hidden}
   .nav{flex-wrap:wrap;gap:9px}
   .tabs{order:3;width:100%;margin:0;overflow-x:auto}
   .tabs button,.tabs a{padding:8px 15px;font-size:12.5px}
-  .hero{padding:24px 20px 20px;border-radius:22px}
-  .hero-say{min-width:0;flex-basis:100%}
-  .figs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 14px;width:100%}
   .card{padding:22px 18px;border-radius:22px}
   .head{flex-wrap:wrap}
   .head .end{width:100%;margin-left:0;justify-content:flex-end}
   .tw{margin:0 -18px;padding:0 18px}
-  .fig b{font-size:44px}
   .elder-row{gap:8px;padding:11px 0}
-  .elder-open{grid-template-columns:42px minmax(0,1fr);gap:10px}
+  .elder-name{grid-template-columns:42px minmax(0,1fr);gap:0 10px}
   .elder-av{width:42px;height:42px;border-radius:14px}
-  .elder-summary{max-width:58vw}
-  .modal{padding:10px;align-items:end}
-  .modal-card{max-height:calc(100vh - 20px);padding:20px;border-radius:24px}
-  .modal-facts{grid-template-columns:1fr}
-  .ribbon{overflow-x:auto;-webkit-overflow-scrolling:touch}
-  .ribbon svg{min-width:600px}
-  .ans{grid-template-columns:1fr 1fr}
-  .dots{grid-template-columns:repeat(7,1fr);gap:10px}
 }
 </style>
 </head>
@@ -510,49 +289,15 @@ body.modal-open{overflow:hidden}
     </div>
   </nav>
 
-  <!-- ══ 데이터 출처 배너 ══ -->
-  <div class="src-banner reveal" id="src-banner" style="animation-delay:.05s" hidden></div>
-
-  <!-- ══ 히어로 ══ -->
-  <section class="hero reveal" style="animation-delay:.08s">
-    <div class="hero-top">
-      <div class="hero-say">
-        <span class="eyebrow" id="eyebrow">관악구 · 폭염경보 · 08:00 예측</span>
-        <h1>오늘 <em id="hw">오후 1시부터 5시</em>가<br />가장 위험합니다</h1>
-        <p class="thesis">전화는 <b id="ct">11시 30분</b>에 나갑니다. 더워지기 전에 겁니다.</p>
-
-        <!-- ML 위험도: 백엔드에서 실제로 받아오는 유일한 예측값 -->
-        <div class="ml-risk" id="ml-risk">
-          <div class="ml-risk-body">
-            <span class="eyebrow">ML 폭염 위험도</span>
-            <div class="ml-risk-line">
-              <b class="mono" id="ml-score">—</b>
-              <span class="risk-chip" id="ml-level">불러오는 중</span>
-            </div>
-            <span class="ml-risk-meta mono" id="ml-meta">위험도 예측을 요청하고 있습니다…</span>
-          </div>
-          <button class="pill-btn" id="ml-refresh" type="button">다시 예측</button>
-        </div>
-      </div>
-      <dl class="figs" id="figs"></dl>
-    </div>
-
-    <div class="ribbon-head">
-      <h2>오늘의 열</h2>
-      <span class="eyebrow">06시 → 22시 · 예측 체감온도</span>
-      <span class="note" id="ribbon-note">35℃ 초과 5시간</span>
-    </div>
-    <figure class="ribbon" id="ribbon"><div class="tip" id="rtip"></div></figure>
-  </section>
-
   <div class="grid">
 
     <!-- ══ 1차 대시보드 어르신 목록 ══ -->
-    <section class="card c7 reveal" style="animation-delay:.16s">
+    <section class="card c7 reveal" style="animation-delay:.08s">
       <div class="head">
         <div>
           <h2>1차 대시보드</h2>
           <p>통화 버튼을 누르면 대응계획 생성 · 예방 전화 · 요약이 한 번에 실행됩니다. 한 건에 최대 2분이 걸립니다.</p>
+          <p class="mono" id="risk-source" style="font-size:11.5px;color:var(--ink-3)">위험도 불러오는 중…</p>
         </div>
         <div class="end">
           <button class="pill-btn solid" id="call-all" type="button">전체 자동 통화</button>
@@ -561,39 +306,24 @@ body.modal-open{overflow:hidden}
       <ul class="elder-list" id="elders"></ul>
     </section>
 
-    <!-- ══ 어두운 카드: 오늘 전화 42통 ══ -->
-    <section class="card dark c5 reveal" style="animation-delay:.22s">
-      <div class="head">
-        <div>
-          <h2 id="phone-title" style="color:#fff">오늘 전화 42통</h2>
-          <p>점 하나가 어르신 한 분입니다</p>
-        </div>
-      </div>
-      <div class="dark-fig">
-        <b class="mono" id="rate">74%</b>
-        <div class="side">
-          <span class="eyebrow">응답률</span>
-          <em id="rate-sub">31 / 42통</em>
-        </div>
-      </div>
-      <ul class="dots" id="dots"></ul>
-      <div class="next">
-        <span class="t">11:35</span>
-        <span class="d">미응답 8분 중 <b>3분</b>께 한 번 더 겁니다. 나머지 5분은 직접 확인으로 넘겼습니다.</span>
-      </div>
-      <ul class="dkey" id="dkey"></ul>
-    </section>
-
     <!-- ══ 통화 기록 ══ -->
-    <section class="card c8 reveal" style="animation-delay:.28s">
+    <section class="card c8 reveal" style="animation-delay:.14s">
       <div class="head">
         <div>
           <h2>통화 기록</h2>
           <p>답을 듣지 못한 항목은 <b style="font-weight:500;color:var(--ink-2)">확인 안 됨</b>으로 둡니다. 추측하지 않습니다.</p>
         </div>
         <div class="end">
-          <button class="pill-btn">전체 42건</button>
-          <button class="pill-btn">CSV</button>
+          <select id="obs-status" aria-label="통화 상태 필터">
+            <option value="">전체 상태</option>
+            <option value="ANSWERED">응답 완료</option>
+            <option value="UNCONFIRMED">미응답</option>
+            <option value="COMPLETED">완료</option>
+            <option value="ACTION_REQUIRED">조치 필요</option>
+          </select>
+          <button class="pill-btn" id="obs-prev" type="button">이전</button>
+          <span class="mono" id="obs-page" style="font-size:12px;color:var(--ink-3)">—</span>
+          <button class="pill-btn" id="obs-next" type="button">다음</button>
         </div>
       </div>
       <div class="tw">
@@ -612,26 +342,6 @@ body.modal-open{overflow:hidden}
         </table>
       </div>
     </section>
-
-    <!-- ══ 발신 진행 + 쉼터 ══ -->
-    <section class="card c4 reveal" style="animation-delay:.34s">
-      <div class="head">
-        <div>
-          <h2>발신 진행</h2>
-          <p>오늘 대상 42건의 현재 상태</p>
-        </div>
-      </div>
-      <div class="flow" id="flow"></div>
-      <ul class="flow-key" id="flow-key"></ul>
-
-      <div class="head" style="margin:26px 0 4px">
-        <div>
-          <h2>무더위쉼터</h2>
-          <p>배정된 어르신과 이동 진행 상태 · 08:10 갱신</p>
-        </div>
-      </div>
-      <ul id="shelters"></ul>
-    </section>
   </div>
 
   <footer class="foot">
@@ -639,71 +349,22 @@ body.modal-open{overflow:hidden}
     <span>통화 첫 문장에서 AI 안내임을 밝힙니다</span>
     <span>녹음하지 않습니다</span>
     <span>전화번호는 화면에 두지 않습니다</span>
-    <span id="src">데이터 · 목업</span>
+    <span id="src">데이터 · —</span>
   </footer>
 </div>
 
-<div class="modal" id="elder-modal" role="dialog" aria-modal="true"
-     aria-labelledby="modal-title" aria-describedby="modal-summary" hidden>
-  <article class="modal-card">
-    <header class="modal-head">
-      <div>
-        <span class="eyebrow">1차 LLM 요약 · 상세 프로필</span>
-        <h2 id="modal-title">어르신 상세</h2>
-        <p id="modal-id">—</p>
-      </div>
-      <button class="modal-close" id="modal-close" type="button" aria-label="상세 팝업 닫기">×</button>
-    </header>
-    <div class="modal-profile">
-      <span class="elder-av" id="modal-avatar">—</span>
-      <div><b id="modal-name">—</b><span id="modal-status">—</span></div>
-    </div>
-    <section class="modal-section">
-      <h3>1차 LLM 요약</h3>
-      <p class="modal-summary" id="modal-summary">—</p>
-    </section>
-    <section class="modal-section">
-      <h3>확인 정보</h3>
-      <dl class="modal-facts">
-        <div><dt>연령 · 지역</dt><dd id="modal-region">—</dd></div>
-        <div><dt>위험 단계</dt><dd id="modal-risk">—</dd></div>
-        <div><dt>최근 통화</dt><dd id="modal-last-call">—</dd></div>
-        <div><dt>무더위쉼터</dt><dd id="modal-shelter">—</dd></div>
-      </dl>
-    </section>
-    <div class="modal-actions">
-      <button class="pill-btn" id="modal-cancel" type="button">닫기</button>
-      <a class="pill-btn" id="modal-detail" href="./elderly-detail.html">상세 화면 열기</a>
-      <button class="pill-btn solid modal-call" id="modal-call" type="button">자동 통화 연결</button>
-    </div>
-  </article>
-</div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
+<script src="./assets/api.js"></script>
 <script>
-/* ═══════════════════════════════════════════════════════════════
-   데이터 출처
-   ───────────────────────────────────────────────────────────────
-   지금 백엔드에 실제로 있는 것만 연결하고, 없는 것은 목업으로 둡니다.
-   화면 상단 배너가 "무엇이 진짜인지"를 항상 알려줍니다.
-
-     elders   → GET  /api/v1/elderly            ✅ 실 API
-     risk     → POST /internal/v1/risk/forecast  ✅ 실 API (ML 위험도)
-     care-run → POST /internal/v1/guidance/care-runs/{id}
-                                                 ✅ 실 API (LLM/RAG 대응계획 + 전화 + 요약)
-     heat     → 목업 (weather 공개 엔드포인트 없음)
-     calls    → 목업 (통화기록 목록 API 없음)
-     flow     → 목업 (contact job 집계 API 없음)
-     shelters → 목업 (shelter 컨트롤러 없음)
-   ═══════════════════════════════════════════════════════════════ */
-// 배포 시 window.ANSIMON_API_BASE 또는 ?api=https://backend.example 로 주입합니다.
-const API_BASE = String(
-  window.ANSIMON_API_BASE||new URLSearchParams(location.search).get("api")||"http://localhost:8080"
-).replace(/\/$/,"");
+/* 공통 헬퍼(assets/api.js)의 라벨에 없는 진행 중 상태를 보강합니다. */
+CONTACT_LABEL.CALLING = "통화 연결 중";
+CONTACT_LABEL.RETRY_SCHEDULED = "재통화 예정";
 
 const ENDPOINTS = {
   elders      : "/api/v1/elderly?page=0&size=50&sort=id,desc",
-  riskForecast: "/internal/v1/risk/forecast",
+  currentRisk : "/api/v1/risk/current",
+  observations: (params)=>`/api/v1/contact/observations?${params.toString()}`,
   careRun     : (elderlyId)=>`/internal/v1/guidance/care-runs/${encodeURIComponent(elderlyId)}`,
 };
 
@@ -711,419 +372,126 @@ const ENDPOINTS = {
    백엔드 커넥션 타임아웃이 120초라 클라이언트는 그보다 조금 길게 잡습니다. */
 const CARE_RUN_TIMEOUT_MS = 130000;
 
-/* 목업으로 표시된 영역을 배너에 모아 보여주기 위한 출처 기록 */
-const SOURCE = {};
-function markSource(key, real, reason){ SOURCE[key] = { real, reason }; }
+const RISK_LABEL = { critical:"긴급", high:"높음", medium:"보통", low:"낮음" };
 
-const MOCK = {
-  today: {
-    region:"관악구", alert:"폭염경보", updatedAt:"08:00",
-    riskWindow:"오후 1시부터 5시", callAt:"10시 30분",
-    targets:128, calls:42, answered:31, sendPeople:10,
-    callStatusCounts:{done:25,act:6,none:8,fail:3},
-  },
-  heat: {
-    threshold:35, windowStart:13, windowEnd:17, callHour:10.5,
-    hours:[
-      {h:6,t:26.1},{h:7,t:27.4},{h:8,t:29.2},{h:9,t:31.5},{h:10,t:33.4},
-      {h:11,t:35.1},{h:12,t:36.4},{h:13,t:37.6},{h:14,t:38.2},{h:15,t:37.9},
-      {h:16,t:36.8},{h:17,t:35.2},{h:18,t:33.1},{h:19,t:31.0},{h:20,t:29.4},
-      {h:21,t:28.2},{h:22,t:27.5},
-    ],
-  },
-  elders: [
-    { elderlyId:10, contactJobId:991, name:"박○자", eid:"E-1088", age:82, region:"은천동",
-      risk:"CRITICAL", contactStatus:"ANSWERED", lastCall:"10:55 통화 완료",
-      summary:"어지럼증과 메스꺼움을 언급했습니다. 즉시 건강 상태를 직접 확인해야 하며, 보호자 연락처가 등록되어 있지 않습니다.",
-      shelter:{name:"관악구민센터 1층 쉼터",status:"담당자 동행 검토"} },
-    { elderlyId:11, contactJobId:992, name:"김○순", eid:"E-1042", age:79, region:"은천동",
-      risk:"HIGH", contactStatus:"ANSWERED", lastCall:"10:41 통화 완료",
-      summary:"쉼터 이동 의향이 있으나 혼자 이동하기 어렵다고 답했습니다. 차량 배차 확인이 필요합니다.",
-      shelter:{name:"은천경로당 무더위쉼터",status:"차량 배차 대기"} },
-    { elderlyId:12, contactJobId:993, name:"이○호", eid:"E-1015", age:85, region:"봉천동",
-      risk:"HIGH", contactStatus:"PENDING", lastCall:"아직 통화 전",
-      summary:"1인 가구이며 에어컨이 없습니다. 폭염 시간 전 냉방 상태와 생활 지원 필요 여부를 우선 확인해야 합니다.",
-      shelter:{name:"낙성대동 주민센터",status:"이동 의향 확인 전"} },
-    { elderlyId:13, contactJobId:994, name:"최○남", eid:"E-1103", age:88, region:"신림동",
-      risk:"MEDIUM", contactStatus:"UNCONFIRMED", lastCall:"11:05 미응답",
-      summary:"두 차례 통화에 응답하지 않았습니다. 이웃 비상 연락망을 통한 수동 확인이 필요합니다.",
-      shelter:{name:"배정 전",status:"연락 후 결정"} },
-    { elderlyId:14, contactJobId:995, name:"정○식", eid:"E-1067", age:81, region:"낙성대동",
-      risk:"MEDIUM", contactStatus:"SCHEDULED", lastCall:"11:20 발신 예정",
-      summary:"청력 저하 기록이 있어 질문을 짧게 나눠 확인해야 합니다. 단독 이동 가능 여부는 아직 확인되지 않았습니다.",
-      shelter:{name:"낙성대동 주민센터",status:"통화 후 배정"} },
-  ],
-  // 42통 = 완료25 + 조치필요6 + 미응답8 + 실패3
-  dots: { done:25, act:6, none:8, fail:3 },
-  flow: [
-    {label:"분석 완료",   n:28, c:"#2F5AC4"},
-    {label:"발신 중",     n:3,  c:"#7B9BE4"},
-    {label:"발신 예약",   n:4,  c:"#A9BEEE"},
-    {label:"승인 대기",   n:4,  c:"#CFDBF6"},
-    {label:"재시도 예약", n:3,  c:"#D2701F"},
-  ],
-  calls: [
-    { name:"김○순", eid:"E-1042", state:"ANSWERED", at:"10:41",
-      a:{shelter:"YES",move:"NO",help:"YES",symptom:"NO"}, conf:.93,
-      sum:"쉼터에 가시겠다고 했지만 혼자 이동이 어렵다고 하셨습니다." },
-    { name:"박○자", eid:"E-1088", state:"ANSWERED", at:"10:55",
-      a:{shelter:"UNKNOWN",move:"UNKNOWN",help:"YES",symptom:"YES"}, conf:.88,
-      sum:"어지럼증과 메스꺼움을 말씀하셨습니다. 쉼터 관련 답변은 듣지 못했습니다." },
-    { name:"이○호", eid:"E-1015", state:"ANSWERED", at:"10:32",
-      a:{shelter:"NO",move:"YES",help:"YES",symptom:"NO"}, conf:.91,
-      sum:"댁에 계시겠다고 하셨고, 생활에 도움이 필요하다고 하셨습니다." },
-    { name:"최○남", eid:"E-1103", state:"UNCONFIRMED", at:"11:05",
-      a:{shelter:"UNKNOWN",move:"UNKNOWN",help:"UNKNOWN",symptom:"UNKNOWN"}, conf:0,
-      sum:"전화를 받지 않으셨습니다. 두 번 다 응답이 없어 직접 확인으로 넘겼습니다." },
-    { name:"한○례", eid:"E-1071", state:"ANSWERED", at:"10:28",
-      a:{shelter:"YES",move:"YES",help:"NO",symptom:"NO"}, conf:.96,
-      sum:"쉼터에 직접 가시겠다고 하셨습니다. 더 필요한 것은 없다고 하셨습니다." },
-  ],
-  shelters: [
-    {name:"은천경로당 무더위쉼터", addr:"은천로 41",open:true,walk:8,
-      assignedElders:[{name:"김○순",eid:"E-1042",status:"차량 배차 대기"}]},
-    {name:"관악구민센터 1층 쉼터", addr:"관악로 145",open:true,walk:12,
-      assignedElders:[{name:"박○자",eid:"E-1088",status:"담당자 동행 검토"}]},
-    {name:"낙성대동 주민센터", addr:"낙성대로 24",open:true,walk:15,
-      assignedElders:[{name:"이○호",eid:"E-1015",status:"의향 확인 전"},{name:"정○식",eid:"E-1067",status:"통화 후 배정"}]},
-    {name:"봉천4동 경로당",addr:"봉천로 302",open:false,walk:9,assignedElders:[]},
-  ],
-};
-
-/* 백엔드에 아직 없는 영역은 요청하지 않고 곧바로 목업을 씁니다 — 콘솔을 404로 채우지 않기 위해서입니다. */
-const MOCK_ONLY = {
-  today   : "대시보드 집계 API 없음",
-  heat    : "weather 공개 엔드포인트 없음",
-  calls   : "통화기록 목록 API 없음",
-  flow    : "발신 집계 API 없음",
-  shelters: "쉼터 API 없음",
-};
-
-async function apiGet(path){
-  const r = await fetch(API_BASE + path, {headers:{Accept:"application/json"}});
-  const b = await r.json().catch(()=>({}));
-  if(!r.ok || b.success === false) throw new Error(b.error?.message || `HTTP ${r.status}`);
-  return ("data" in b) ? b.data : b;
+/* ── 오늘 날짜: 브라우저 시간대가 아니라 서울 기준으로 잡습니다 ── */
+function seoulToday(){
+  return new Intl.DateTimeFormat("en-CA", { timeZone:"Asia/Seoul" }).format(new Date());
 }
 
-async function load(k){
-  if(MOCK_ONLY[k]){ markSource(k, false, MOCK_ONLY[k]); return MOCK[k]; }
-  try{
-    const data = await apiGet(ENDPOINTS[k]);
-    markSource(k, true);
-    // 페이지 응답이면 content 만 꺼냅니다.
-    return (data && Array.isArray(data.content)) ? data.content : data;
-  }catch(e){
-    console.warn("[안심온] API 응답 없음 → 목업으로 표시합니다:", k, e);
-    markSource(k, false, "백엔드 미연결");
-    return MOCK[k];
-  }
-}
+/* ── 어르신 목록 ── */
+let ELDER_STATE = [];
 
-/* ── ML 위험도: POST /internal/v1/risk/forecast ── */
-let RISK_SNAPSHOT = null;
-async function loadRiskForecast(){
-  try{
-    const r = await fetch(API_BASE + ENDPOINTS.riskForecast, {
-      method:"POST",
-      headers:{Accept:"application/json","Content-Type":"application/json"},
-      body: JSON.stringify({region:"서울"}),
-    });
-    const b = await r.json().catch(()=>({}));
-    if(!r.ok || b.success === false) throw new Error(b.error?.message || `HTTP ${r.status}`);
-    RISK_SNAPSHOT = ("data" in b) ? b.data : b;
-    markSource("risk", true);
-    return RISK_SNAPSHOT;
-  }catch(e){
-    console.warn("[안심온] 위험도 예측 API 응답 없음:", e);
-    markSource("risk", false, "백엔드 미연결");
-    return null;
-  }
-}
-
-const $ = (s,r=document)=>r.querySelector(s);
-const S = (t,a={})=>{const n=document.createElementNS("http://www.w3.org/2000/svg",t);
-  for(const k in a) n.setAttribute(k,a[k]); return n;};
-const esc = (value)=>String(value??"").replace(/[&<>'"]/g,ch=>({
-  "&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':"&quot;"
-}[ch]));
-let ELDER_STATE=[];
-let activeElderId=null;
-let modalReturnFocus=null;
-let toastTimer=null;
-
-/* 열 색: 임계 아래는 남색 농도, 임계 위는 열 램프. 경계에서 색이 갈라진다. */
-function heatColor(t, threshold){
-  if(t < threshold){
-    const k = Math.min(Math.max((t-24)/(threshold-24),0),1);
-    return mix("#D3E0F5","#5D83D8",k);
-  }
-  const k = Math.min((t-threshold)/5,1);
-  return mix("#E9A94E","#B62318",k);
-}
-function mix(a,b,k){
-  const p=h=>[1,3,5].map(i=>parseInt(h.slice(i,i+2),16));
-  const [r1,g1,b1]=p(a),[r2,g2,b2]=p(b);
-  const c=(x,y)=>Math.round(x+(y-x)*k).toString(16).padStart(2,"0");
-  return `#${c(r1,r2)}${c(g1,g2)}${c(b1,b2)}`;
-}
-
-/* ── 히어로 숫자 ──
-   "관리 대상"은 실제 등록된 노인 수입니다. 나머지 셋은 통화 파이프라인이 붙기 전까지 목업입니다. */
-function renderToday(d, realElderCount){
-  $("#eyebrow").textContent = `${d.region} · ${d.alert} · ${d.updatedAt} 예측`;
-  $("#hw").textContent = d.riskWindow;
-  $("#ct").textContent = d.callAt;
-  const targets = Number.isFinite(realElderCount) ? realElderCount : d.targets;
-  $("#figs").innerHTML = [
-    {k:"관리 대상", v:targets,      u:"명"},
-    {k:"오늘 발신", v:d.calls,      u:"통"},
-    {k:"통화 완료", v:d.answered,   u:"통"},
-    {k:"직접 확인", v:d.sendPeople, u:"건", hot:true},
-  ].map(f=>`
-    <div class="fig${f.hot?" hot":""}">
-      <dt class="eyebrow">${f.k}</dt>
-      <dd><b class="mono">${f.v}<i>${f.u}</i></b></dd>
-    </div>`).join("");
-}
-
-/* ── ML 위험도 표시 ── */
-function fmtInstant(iso){
-  if(!iso) return "—";
-  const d=new Date(iso);
-  return isNaN(d)?"—":d.toLocaleString("ko-KR",{month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit"});
-}
-function renderMlRisk(snapshot){
-  const box=$("#ml-risk");
-  if(!snapshot){
-    box.classList.add("is-off");box.classList.remove("is-hot");
-    $("#ml-score").textContent="—";
-    $("#ml-level").textContent="예측 없음";
-    $("#ml-level").className="risk-chip";
-    $("#ml-meta").textContent="백엔드에 연결되면 ML 위험도가 표시됩니다.";
-    return;
-  }
-  const level=String(snapshot.riskLevel||"").toUpperCase();
-  const score=Number(snapshot.riskScore);
-  box.classList.remove("is-off");
-  box.classList.toggle("is-hot", level==="HIGH"||level==="CRITICAL");
-  $("#ml-score").textContent=Number.isFinite(score)?score.toFixed(2):"—";
-  $("#ml-level").textContent=RISK_LABEL[level]||level||"—";
-  $("#ml-level").className=`risk-chip ${level.toLowerCase()}`;
-  $("#ml-meta").textContent=
-    `${snapshot.regionCode||"—"} · ${fmtInstant(snapshot.targetStartAt)} ~ ${fmtInstant(snapshot.targetEndAt)} · ${snapshot.modelVersion||"모델 버전 미상"}`;
-}
-
-/* ── 데이터 출처 배너 ── */
-const SOURCE_LABEL={
-  elders:"어르신 목록", risk:"ML 위험도", heat:"체감온도 곡선",
-  calls:"통화 기록", flow:"발신 진행", shelters:"무더위쉼터", today:"오늘 집계",
-};
-function renderSourceBanner(){
-  const entries=Object.entries(SOURCE).filter(([k])=>SOURCE_LABEL[k]);
-  if(!entries.length) return;
-  const live=entries.filter(([,v])=>v.real);
-  const banner=$("#src-banner");
-  banner.hidden=false;
-  banner.innerHTML=
-    `<span class="lead">데이터 출처</span>`+
-    entries.map(([k,v])=>
-      `<span class="s ${v.real?"live":"mock"}" title="${esc(v.reason||"실 API")}"><i></i>${esc(SOURCE_LABEL[k])} ${v.real?"실 API":"목업"}</span>`
-    ).join("")+
-    `<span class="s" style="margin-left:auto;color:var(--ink-4)">${live.length}/${entries.length} 연결 · ${esc(API_BASE)}</span>`;
-}
-
-/* ── 시그니처: 오늘의 열 띠 ──
-   시간당 막대 하나. 높이는 체감온도, 색은 경보선(35℃)을 기준으로 갈라진다.
-   발신 표시는 뜨거워지는 지점의 왼쪽에 찍힌다 — 이 페이지가 하려는 말 전체다. */
-function renderRibbon(d){
-  const box=$("#ribbon"), tip=$("#rtip");
-  const W=1200, H=158, PT=26, BASE=118, PL=6, PR=6;
-  const hs=d.hours, n=hs.length;
-  const slot=(W-PL-PR)/n, bw=Math.min(slot-7, 46);
-  const lo=23.5, hi=39.5;
-  const x=i=>PL+slot*i+(slot-bw)/2;
-  const hOf=t=>Math.max(6,(t-lo)/(hi-lo)*(BASE-PT));
-
-  const svg=S("svg",{viewBox:`0 0 ${W} ${H}`,role:"img","aria-label":
-    `오늘 6시부터 22시까지 예측 체감온도. 낮 최고 ${Math.max(...hs.map(p=>p.t))}도. `+
-    `${d.windowStart}시부터 ${d.windowEnd}시까지가 경보 기준을 넘습니다.`});
-
-  // 기준선 하나. 격자는 두지 않는다.
-  svg.append(S("line",{x1:PL,y1:BASE+.5,x2:W-PR,y2:BASE+.5,stroke:"#CBD8EC","stroke-width":"1"}));
-
-  hs.forEach((p,i)=>{
-    const h=hOf(p.t), hot=p.t>=d.threshold;
-    const bar=S("rect",{x:x(i),y:BASE-h,width:bw,height:h,rx:Math.min(bw/2,7),
-      fill:heatColor(p.t,d.threshold),class:"bar"});
-    bar.style.animationDelay=(.18+i*.035)+"s";
-    svg.append(bar);
-
-    if(p.h%2===0){
-      const t=S("text",{x:x(i)+bw/2,y:BASE+20,"text-anchor":"middle","font-size":"10.5",
-        "font-family":"DM Mono, monospace",fill:hot?"#B0713F":"#9AA6BE","letter-spacing":".06em"});
-      t.textContent=String(p.h).padStart(2,"0"); svg.append(t);
-    }
-    bar.addEventListener("mouseenter",()=>{
-      box.classList.add("hovering");
-      svg.querySelectorAll(".bar").forEach(b=>b.classList.remove("on"));
-      bar.classList.add("on");
-      const r=svg.getBoundingClientRect();
-      tip.innerHTML=`<b>${p.h}시 · ${p.t}℃</b><s>${hot?"경보선 초과 · 실내 대기 안내":"주의"}</s>`;
-      tip.style.left=(x(i)+bw/2)/W*r.width+"px";
-      tip.style.top=(BASE-h)/H*r.height+"px";
-      tip.style.opacity=1;
-    });
-  });
-  svg.addEventListener("mouseleave",()=>{
-    box.classList.remove("hovering"); tip.style.opacity=0;
-    svg.querySelectorAll(".bar").forEach(b=>b.classList.remove("on"));
-  });
-
-  // 발신 표시
-  const ci=d.callHour-hs[0].h, cx=PL+slot*ci+slot/2;
-  const g=S("g",{class:"mark"});
-  g.append(S("line",{x1:cx,y1:PT-12,x2:cx,y2:BASE,stroke:"#2F5AC4","stroke-width":"1.4",
-    "stroke-dasharray":"3 3.5"}));
-  g.append(S("circle",{cx:cx,cy:PT-12,r:"4",fill:"#2F5AC4"}));
-  const lb=S("text",{x:cx-11,y:PT-8,"text-anchor":"end","font-size":"11",
-    "font-family":"DM Mono, monospace",fill:"#2F5AC4","letter-spacing":".05em"});
-  lb.textContent="10:30 발신"; g.append(lb);
-  svg.append(g);
-
-  // 경보선 라벨 — 색이 갈라지는 지점을 글자로도 말해 둔다
-  const th=S("text",{x:W-PR,y:BASE-hOf(d.threshold)-7,"text-anchor":"end","font-size":"10",
-    "font-family":"DM Mono, monospace",fill:"#B0713F","letter-spacing":".1em"});
-  th.textContent="35℃ 경보선"; svg.append(th);
-  svg.append(S("line",{x1:PL,y1:BASE-hOf(d.threshold),x2:W-PR-72,y2:BASE-hOf(d.threshold),
-    stroke:"#E4C9A8","stroke-width":"1","stroke-dasharray":"2 5"}));
-
-  const over=hs.filter(p=>p.t>=d.threshold).length;
-  $("#ribbon-note").textContent=`35℃ 초과 ${over}시간`;
-  box.prepend(svg);
-}
-
-/* ── 1차 대시보드 어르신 목록 + 발신 ── */
-const RISK_LABEL={CRITICAL:"긴급",HIGH:"높음",MEDIUM:"보통",LOW:"낮음"};
-const CONTACT_LABEL={
-  PENDING:"통화 전",READY_FOR_REVIEW:"발신 준비",SCHEDULED:"발신 예정",CALLING:"통화 연결 중",
-  ANSWERED:"응답 완료",RETRY_SCHEDULED:"재통화 예정",UNCONFIRMED:"미응답",FAILED:"발신 실패",
-  ANALYZED:"분석 완료",ACTION_REQUIRED:"조치 필요",COMPLETED:"완료",
-};
-const calledStatuses=new Set(["ANSWERED","RETRY_SCHEDULED","UNCONFIRMED","FAILED","ANALYZED","ACTION_REQUIRED","COMPLETED"]);
-
-const CONSENT_LABEL={CONSENTED:"자동전화 동의",NOT_CONSENTED:"미동의",WITHDRAWN:"동의 철회"};
-
-/* 실 API(ElderlyResponse)와 목업을 같은 모양으로 맞춥니다.
-   위험 등급은 개인별 스냅샷이 아직 없어 지역 위험도(RISK_SNAPSHOT)를 그대로 씁니다. */
 function normalizeElder(raw){
-  const shelter=raw.shelter||{};
-  const consent=String(raw.consentStatus??raw.consent_status??"").toUpperCase();
-  const address=raw.address??"";
-  // "서울특별시 관악구 은천로 41" → "관악구". 시·도보다 시군구를 우선합니다.
-  const tokens=address.split(/\s+/).filter(t=>t.length>1);
-  const district=tokens.find(t=>/[구군]$/.test(t))??tokens.find(t=>/시$/.test(t));
   return {
-    elderlyId:raw.elderlyId??raw.elderly_id??raw.id,
-    contactJobId:raw.contactJobId??raw.contact_job_id??raw.latest_contact_job_id,
-    name:raw.name??raw.displayName??raw.elderly_name??"이름 확인 전",
-    eid:raw.eid??raw.elderly_code??`E-${raw.elderlyId??raw.id??"—"}`,
-    age:raw.age??raw.elderly_age??"—",
-    region:raw.region??raw.dong??district??raw.regionCode??"지역 확인 전",
-    // 개인 위험도 API가 없어 지역 ML 위험도를 표시합니다.
-    risk:String(raw.risk??raw.risk_level??RISK_SNAPSHOT?.riskLevel??"MEDIUM").toUpperCase(),
-    consentStatus:consent||null,
-    contactStatus:String(raw.contactStatus??raw.contact_status??"PENDING").toUpperCase(),
-    lastCall:raw.lastCall??raw.last_call??raw.last_contact_at??"아직 통화 전",
-    summary:raw.summary??raw.llm_summary??raw.primary_summary
-      ??(raw.healthNote?`건강 메모 · ${raw.healthNote}`:"1차 요약이 아직 생성되지 않았습니다."),
-    shelter:{
-      name:shelter.name??raw.shelter_name??"배정 전",
-      status:shelter.status??raw.shelter_status??"통화 후 결정",
-    },
+    elderlyId: raw.elderlyId ?? raw.id,
+    name: raw.displayName ?? raw.name ?? "이름 확인 전",
+    age: raw.age ?? "—",
+    // ConsentStatus 는 EnumCode 라 JSON 에 소문자로 옵니다.
+    consentStatus: String(raw.consentStatus ?? "").toLowerCase() || null,
+    contactStatus: String(raw.contactStatus ?? "PENDING").toUpperCase(),
   };
 }
 
-function avatarText(name){return String(name||"—").replace(/○/g,"").slice(0,2)}
-function callIcon(status){
-  const called=calledStatuses.has(status);
-  return called
-    ? `<svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.8a2 2 0 0 1-.4 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/><path d="M3 15h5"/><path d="m3 15 2-2"/></svg>`
-    : `<svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.8a2 2 0 0 1-.4 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg>`;
-}
-
-function renderElders(list=ELDER_STATE){
-  $("#elders").innerHTML=list.map(e=>{
-    const called=calledStatuses.has(e.contactStatus);
-    const calling=e.contactStatus==="CALLING";
-    const blocked=e.consentStatus&&e.consentStatus!=="CONSENTED";
-    const callLabel=blocked?`${CONSENT_LABEL[e.consentStatus]} · 통화 불가`
-      :called?"재통화 연결":"자동 통화 연결";
-    return `<li class="elder-row${calling?" is-calling":""}" data-elder-id="${esc(e.elderlyId)}">
-      <button class="elder-open" type="button" data-elder-id="${esc(e.elderlyId)}" aria-label="${esc(e.name)} 어르신 상세 열기">
+function renderElders(){
+  $("#elders").innerHTML = ELDER_STATE.map(e=>{
+    const calling = e.contactStatus === "CALLING";
+    const blocked = e.consentStatus && e.consentStatus !== "consented";
+    return `<li class="elder-row${calling?" is-calling":""}">
+      <a class="elder-name" href="./elderly-detail.html?id=${esc(e.elderlyId)}">
         <span class="elder-av">${esc(avatarText(e.name))}</span>
-        <span class="elder-copy">
-          <span class="elder-title"><b>${esc(e.name)}</b><span>${esc(e.age)}세 · ${esc(e.eid)}</span><span class="risk-chip ${e.risk.toLowerCase()}">${esc(RISK_LABEL[e.risk]||e.risk)}</span>${
-            e.consentStatus&&e.consentStatus!=="CONSENTED"
-              ? `<span class="risk-chip ${e.consentStatus.toLowerCase()}">${esc(CONSENT_LABEL[e.consentStatus])}</span>`:""}</span>
-          <span class="elder-meta">${esc(e.region)} · ${esc(CONTACT_LABEL[e.contactStatus]||e.contactStatus)} · ${esc(e.lastCall)}</span>
-          <span class="elder-summary">${esc(e.summary)}</span>
-        </span>
-      </button>
-      <button class="call-one${called?" called":""}${calling?" is-calling":""}" type="button"
-              data-elder-id="${esc(e.elderlyId)}" aria-label="${esc(e.name)} 어르신 ${esc(callLabel)}" title="${esc(callLabel)}"
-              ${calling||blocked?"disabled":""}>
-        ${callIcon(e.contactStatus)}
-      </button>
+        <b>${esc(e.name)}</b>
+        <span>${esc(e.age ?? "—")}세 · ${esc(CONSENT_LABEL[e.consentStatus] || "동의 확인 전")} · ${esc(CONTACT_LABEL[e.contactStatus] || e.contactStatus)}</span>
+      </a>
+      <span class="risk-chip" data-risk-chip>—</span>
+      <button class="pill-btn solid" type="button" data-action="call" data-id="${esc(e.elderlyId)}"
+              ${calling||blocked?"disabled":""}>${calling?"통화 중…":blocked?`${esc(CONSENT_LABEL[e.consentStatus])} · 통화 불가`:"자동 통화"}</button>
     </li>`;
   }).join("");
+  renderRiskChips();
 }
 
-function notify(message,isError=false){
-  const toast=$("#toast");
-  toast.textContent=message;
-  toast.classList.toggle("error",isError);
-  toast.classList.add("show");
-  clearTimeout(toastTimer);
-  toastTimer=setTimeout(()=>toast.classList.remove("show"),isError?5200:3400);
+async function loadElders(){
+  const list = $("#elders");
+  try{
+    const data = await api.get(ENDPOINTS.elders);
+    const rows = Array.isArray(data?.content) ? data.content : (Array.isArray(data) ? data : []);
+    ELDER_STATE = rows.map(normalizeElder);
+    renderElders();
+    if(!ELDER_STATE.length) list.innerHTML = '<li class="elder-empty">등록된 어르신이 없습니다.</li>';
+  }catch(error){
+    list.innerHTML = `<li class="elder-empty">어르신 목록을 불러오지 못했습니다. ${esc(error.message)}</li>`;
+  }
 }
 
-function fillModal(e){
-  $("#modal-title").textContent=`${e.name} 어르신 상세`;
-  $("#modal-id").textContent=e.eid;
-  $("#modal-avatar").textContent=avatarText(e.name);
-  $("#modal-name").textContent=`${e.name} · ${e.age}세`;
-  $("#modal-status").textContent=CONTACT_LABEL[e.contactStatus]||e.contactStatus;
-  $("#modal-summary").textContent=e.summary;
-  $("#modal-summary").classList.toggle("important",e.risk==="CRITICAL");
-  $("#modal-region").textContent=`${e.age}세 · ${e.region}`;
-  $("#modal-risk").textContent=RISK_LABEL[e.risk]||e.risk;
-  $("#modal-last-call").textContent=e.lastCall;
-  $("#modal-shelter").textContent=`${e.shelter.name} · ${e.shelter.status}`;
-  $("#modal-detail").href=`./elderly-detail.html?id=${encodeURIComponent(e.elderlyId)}`;
-  const blocked=e.consentStatus&&e.consentStatus!=="CONSENTED";
-  const calling=e.contactStatus==="CALLING";
-  $("#modal-call").dataset.elderId=e.elderlyId;
-  $("#modal-call").textContent=
-    blocked?`${CONSENT_LABEL[e.consentStatus]} · 통화 불가`
-    :calling?"통화 연결 중…"
-    :calledStatuses.has(e.contactStatus)?"재통화 연결":"자동 통화 연결";
-  $("#modal-call").disabled=calling||blocked;
+/* ── 현재 위험도 ──
+   지역 단위 예측이라 모든 어르신이 같은 값을 답니다. 그래서 헤더에 출처를 한 번 밝힙니다. */
+let currentRisk = null;
+async function loadRisk(){
+  try{
+    currentRisk = await api.get(ENDPOINTS.currentRisk);
+    const time = (iso)=> new Date(iso).toLocaleTimeString("ko-KR",{hour:"2-digit",minute:"2-digit"});
+    $("#risk-source").textContent =
+      `서울 지역 예측 ${currentRisk.riskScore} · 모델 ${currentRisk.modelVersion}`
+      + ` · 피크 ${time(currentRisk.peakStartAt)}~${time(currentRisk.peakEndAt)}`
+      + (currentRisk.stale ? " · 지난 예측입니다" : "");
+  }catch(error){
+    currentRisk = null;
+    $("#risk-source").textContent = "위험도 예측을 불러오지 못했습니다.";
+  }
+  renderRiskChips();
+}
+function renderRiskChips(){
+  const level = currentRisk ? String(currentRisk.riskLevel).toLowerCase() : "";
+  const label = currentRisk ? `${currentRisk.riskScore} ${RISK_LABEL[level] || currentRisk.riskLevel}` : "예측 없음";
+  const title = currentRisk ? "서울 지역 공통 예측값 · 피크 시간대 주의" : "";
+  $$("[data-risk-chip]").forEach(chip => {
+    chip.textContent = label;
+    chip.title = title;
+    chip.className = `risk-chip ${level}`;
+    chip.setAttribute("data-risk-chip","");
+  });
 }
 
-function openElderModal(elderId){
-  const e=ELDER_STATE.find(x=>String(x.elderlyId)===String(elderId));
-  if(!e)return;
-  activeElderId=e.elderlyId;modalReturnFocus=document.activeElement;fillModal(e);
-  $("#elder-modal").hidden=false;document.body.classList.add("modal-open");
-  requestAnimationFrame(()=>$("#modal-close").focus());
+/* ── 통화 기록 ── */
+let obsPage = 0;
+async function loadObservations(){
+  const params = new URLSearchParams({ date: seoulToday(), page: String(obsPage), size: "20" });
+  const status = $("#obs-status").value;
+  if(status) params.set("status", status);
+  const tbody = $("#rows");
+  try{
+    const data = await api.get(ENDPOINTS.observations(params));
+    renderObservations(data);
+  }catch(error){
+    tbody.innerHTML = `<tr><td colspan="6">통화 기록을 불러오지 못했습니다. ${esc(error.message)}</td></tr>`;
+    $("#obs-page").textContent = "—";
+  }
 }
-
-function closeElderModal(){
-  if($("#elder-modal").hidden)return;
-  $("#elder-modal").hidden=true;document.body.classList.remove("modal-open");activeElderId=null;
-  modalReturnFocus?.focus?.();
+function renderObservations(data){
+  const rows = data.content || [];
+  $("#obs-page").textContent = data.totalElements
+    ? `${data.page + 1} / ${data.totalPages} · 총 ${data.totalElements}건` : "오늘 기록 없음";
+  $("#obs-prev").disabled = data.page <= 0;
+  $("#obs-next").disabled = data.page + 1 >= data.totalPages;
+  if(!rows.length){
+    $("#rows").innerHTML = '<tr><td colspan="6">오늘 통화 기록이 없습니다.</td></tr>';
+    return;
+  }
+  $("#rows").innerHTML = rows.map(o => `
+    <tr>
+      <td><a href="./elderly-detail.html?id=${esc(o.elderlyId)}">${esc(o.elderlyName)}</a></td>
+      <td>${esc(CONTACT_LABEL[o.contactStatus] || o.contactStatus)}</td>
+      <td class="mono">${new Date(o.endedAt).toLocaleTimeString("ko-KR",{hour:"2-digit",minute:"2-digit"})}</td>
+      <td>쉼터 ${esc(TRISTATE_LABEL[o.shelterIntent])} · 단독이동 ${esc(TRISTATE_LABEL[o.canMoveAlone])}
+          · 도움 ${esc(TRISTATE_LABEL[o.helpNeeded])} · 증상 ${esc(TRISTATE_LABEL[o.symptomMentioned])}</td>
+      <td>${esc(o.summary || "—")}</td>
+      <td class="mono">${o.confidence ? Math.round(o.confidence * 100) + "%" : "—"}</td>
+    </tr>`).join("");
 }
+$("#obs-status").addEventListener("change", ()=>{ obsPage = 0; loadObservations(); });
+$("#obs-prev").addEventListener("click", ()=>{ if(obsPage > 0){ obsPage--; loadObservations(); } });
+$("#obs-next").addEventListener("click", ()=>{ obsPage++; loadObservations(); });
 
 /* ═══ 안심 돌봄 실행 (care-run) ═══
    POST /internal/v1/guidance/care-runs/{elderlyId} 하나로
@@ -1131,7 +499,7 @@ function closeElderModal(){
    실제 전화를 걸고 끝날 때까지 기다리므로 한 건에 수십 초가 걸립니다.
    저장은 커넥션 서버가 보내는 결과 콜백이 별도로 처리합니다. */
 
-const CARE_RUN_ERROR={
+const CARE_RUN_ERROR = {
   GLOBAL_CONSENT_REQUIRED           :"자동전화에 동의하지 않은 어르신입니다.",
   GLOBAL_GUIDANCE_GENERATION_BLOCKED:"RAG 근거 검증에 실패해 대응계획을 만들지 못했습니다.",
   GLOBAL_RESOURCE_NOT_FOUND         :"어르신 정보 또는 위험도 예측이 없습니다. 먼저 ML 위험도를 예측하세요.",
@@ -1140,98 +508,79 @@ const CARE_RUN_ERROR={
   GLOBAL_EXTERNAL_SERVICE_SERVER_ERROR:"커넥션 서버에 연결할 수 없습니다.",
 };
 
-let careRunAbort=null;      // 진행 중인 단건 요청
-let batchRunning=false;     // 전체 실행 중 여부
-let batchStopRequested=false;
+let batchRunning = false;
+let batchStopRequested = false;
 
 async function postCareRun(elderlyId){
-  const controller=new AbortController();
-  careRunAbort=controller;
-  const timer=setTimeout(()=>controller.abort(),CARE_RUN_TIMEOUT_MS);
+  const controller = new AbortController();
+  const timer = setTimeout(()=>controller.abort(), CARE_RUN_TIMEOUT_MS);
   try{
-    const response=await fetch(API_BASE+ENDPOINTS.careRun(elderlyId),{
+    const response = await fetch(API_BASE + ENDPOINTS.careRun(elderlyId), {
       method:"POST",
       headers:{Accept:"application/json","Content-Type":"application/json"},
-      signal:controller.signal,
+      signal: controller.signal,
     });
-    const payload=await response.json().catch(()=>({}));
-    if(!response.ok||payload.success===false){
-      const code=payload.error?.code;
-      const error=new Error(CARE_RUN_ERROR[code]||payload.error?.message||`HTTP ${response.status}`);
-      error.code=code;error.status=response.status;
+    const payload = await response.json().catch(()=>({}));
+    if(!response.ok || payload.success === false){
+      const code = payload.error?.code;
+      const error = new Error(CARE_RUN_ERROR[code] || payload.error?.message || `HTTP ${response.status}`);
+      error.code = code; error.status = response.status;
       throw error;
     }
-    return payload.data??payload;
+    return payload.data ?? payload;
   }catch(error){
-    if(error.name==="AbortError") throw new Error("통화가 응답하지 않아 요청을 중단했습니다.");
+    if(error.name === "AbortError") throw new Error("통화가 응답하지 않아 요청을 중단했습니다.");
     if(error instanceof TypeError) throw new Error("백엔드에 연결할 수 없습니다.");
     throw error;
   }finally{
     clearTimeout(timer);
-    careRunAbort=null;
   }
-}
-
-/* 실행 중인 어르신 행에 경과 시간을 흘려보냅니다 — 수십 초를 기다려야 하기 때문입니다. */
-function startElapsed(elder){
-  const startedAt=Date.now();
-  elder.elapsed=0;
-  const tick=setInterval(()=>{
-    elder.elapsed=Math.round((Date.now()-startedAt)/1000);
-    const meta=document.querySelector(`.elder-row[data-elder-id="${CSS.escape(String(elder.elderlyId))}"] .elder-meta`);
-    if(meta) meta.textContent=`${elder.region} · 통화 연결 중 · ${elder.elapsed}초 경과`;
-  },1000);
-  return ()=>{clearInterval(tick);delete elder.elapsed};
 }
 
 async function startCall(elderId){
-  const e=ELDER_STATE.find(x=>String(x.elderlyId)===String(elderId));
-  if(!e){notify("어르신 정보를 찾을 수 없습니다.",true);return}
-  if(e.contactStatus==="CALLING"){notify("이미 통화를 실행하고 있습니다.");return}
-  if(e.consentStatus&&e.consentStatus!=="CONSENTED"){
-    notify(`${e.name} 어르신은 ${CONSENT_LABEL[e.consentStatus]} 상태라 자동 통화를 걸 수 없습니다.`,true);
+  const e = ELDER_STATE.find(x => String(x.elderlyId) === String(elderId));
+  if(!e){ notify("어르신 정보를 찾을 수 없습니다.", {error:true}); return }
+  if(e.contactStatus === "CALLING"){ notify("이미 통화를 실행하고 있습니다."); return }
+  if(e.consentStatus && e.consentStatus !== "consented"){
+    notify(`${e.name} 어르신은 ${CONSENT_LABEL[e.consentStatus]} 상태라 자동 통화를 걸 수 없습니다.`, {error:true});
     return;
   }
 
-  const previous=e.contactStatus;
-  e.contactStatus="CALLING";renderElders();if(activeElderId===e.elderlyId)fillModal(e);
-  const stopElapsed=startElapsed(e);
+  const previous = e.contactStatus;
+  e.contactStatus = "CALLING"; renderElders();
   try{
-    const result=await postCareRun(e.elderlyId);
-    e.contactStatus=result.answered?"ANSWERED":"UNCONFIRMED";
-    e.lastCall=result.answered?"방금 통화 완료":"방금 미응답";
-    e.externalCallId=result.externalCallId;
+    const result = await postCareRun(e.elderlyId);
+    e.contactStatus = result.answered ? "ANSWERED" : "UNCONFIRMED";
     notify(result.answered
       ? `${e.name} 어르신 통화를 마쳤습니다. 요약이 저장되었습니다.`
       : `${e.name} 어르신이 전화를 받지 않았습니다.`);
+    loadObservations();   // 방금 통화가 통화 기록 카드에 바로 보이도록 갱신합니다.
     return result;
   }catch(error){
-    e.contactStatus=previous;
-    notify(`${e.name} 어르신 · ${error.message}`,true);
+    e.contactStatus = previous;
+    notify(`${e.name} 어르신 · ${error.message}`, {error:true});
     throw error;
   }finally{
-    stopElapsed();
     renderElders();
-    if(activeElderId===e.elderlyId)fillModal(e);
   }
 }
 
 /* 전체 실행은 순차로 돕니다. 실제 전화라 동시에 걸면 안 됩니다. */
 async function startAllCalls(){
-  const button=$("#call-all");
-  if(batchRunning){batchStopRequested=true;button.textContent="중지하는 중…";return}
+  const button = $("#call-all");
+  if(batchRunning){ batchStopRequested = true; button.textContent = "중지하는 중…"; return }
 
-  const targets=ELDER_STATE.filter(e=>
-    e.contactStatus!=="CALLING" && (!e.consentStatus||e.consentStatus==="CONSENTED"));
-  if(!targets.length){notify("자동전화에 동의한 대상이 없습니다.",true);return}
+  const targets = ELDER_STATE.filter(e =>
+    e.contactStatus !== "CALLING" && (!e.consentStatus || e.consentStatus === "consented"));
+  if(!targets.length){ notify("자동전화에 동의한 대상이 없습니다.", {error:true}); return }
   if(!confirm(`${targets.length}분께 순서대로 실제 전화를 겁니다. 한 건에 최대 2분이 걸릴 수 있습니다. 진행할까요?`)) return;
 
-  batchRunning=true;batchStopRequested=false;
-  let done=0,failed=0;
+  batchRunning = true; batchStopRequested = false;
+  let done = 0, failed = 0;
   try{
     for(const elder of targets){
-      if(batchStopRequested)break;
-      button.textContent=`중지 (${done+failed+1}/${targets.length})`;
+      if(batchStopRequested) break;
+      button.textContent = `중지 (${done + failed + 1}/${targets.length})`;
       try{ await startCall(elder.elderlyId); done++; }
       catch{ failed++; }
     }
@@ -1239,205 +588,22 @@ async function startAllCalls(){
       ? `중지했습니다 · 완료 ${done}건, 실패 ${failed}건`
       : `전체 통화를 마쳤습니다 · 완료 ${done}건, 실패 ${failed}건`);
   }finally{
-    batchRunning=false;batchStopRequested=false;
-    button.textContent="전체 자동 통화";
+    batchRunning = false; batchStopRequested = false;
+    button.textContent = "전체 자동 통화";
   }
 }
 
-$("#elders").addEventListener("click",event=>{
-  const callButton=event.target.closest(".call-one");
-  if(callButton){event.stopPropagation();startCall(callButton.dataset.elderId);return}
-  const profileButton=event.target.closest(".elder-open");
-  if(profileButton)openElderModal(profileButton.dataset.elderId);
+$("#elders").addEventListener("click", event=>{
+  const callButton = event.target.closest('[data-action="call"]');
+  if(callButton){ event.stopPropagation(); startCall(callButton.dataset.id); }
 });
-$("#call-all").addEventListener("click",startAllCalls);
-$("#modal-call").addEventListener("click",event=>startCall(event.currentTarget.dataset.elderId));
-$("#modal-close").addEventListener("click",closeElderModal);
-$("#modal-cancel").addEventListener("click",closeElderModal);
-$("#elder-modal").addEventListener("click",event=>{if(event.target===event.currentTarget)closeElderModal()});
-document.addEventListener("keydown",event=>{
-  const modal=$("#elder-modal");
-  if(modal.hidden)return;
-  if(event.key==="Escape"){closeElderModal();return}
-  if(event.key!=="Tab")return;
-  const focusable=[...modal.querySelectorAll('button:not(:disabled),[href],[tabindex]:not([tabindex="-1"])')];
-  if(!focusable.length)return;
-  const first=focusable[0],last=focusable[focusable.length-1];
-  if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus()}
-  else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus()}
-});
-
-/* ── 42개의 점. 색은 두 가지, 나머지는 형태로 구분한다. ── */
-function renderDots(d,names){
-  const kinds=[["done",Number(d.done)||0,"통화 완료"],["act",Number(d.act)||0,"조치 필요"],
-               ["none",Number(d.none)||0,"미응답"],["fail",Number(d.fail)||0,"발신 실패"]];
-  const cells=[];
-  kinds.forEach(([cls,n,label])=>{ for(let i=0;i<n;i++) cells.push([cls,label]); });
-  $("#dots").innerHTML=cells.map(([c,l],i)=>
-    `<li class="dot ${c}" title="어르신 ${String(i+1).padStart(2,"0")} · ${l}"></li>`).join("");
-  $("#dkey").innerHTML=kinds.map(([cls,n,label])=>{
-    const style={done:"background:#17A088",act:"background:#D07F31",
-      none:"box-shadow:inset 0 0 0 1.5px #47608F",fail:"background:#22355C"}[cls];
-    return `<li><i style="${style}"></i>${label}<b>${n}</b></li>`;
-  }).join("");
-}
-
-/* ── 발신 진행 ── */
-function renderFlow(list){
-  const total=list.reduce((s,x)=>s+x.n,0);
-  $("#flow").innerHTML=list.map(x=>
-    `<i style="flex:${x.n};background:${x.c}" title="${x.label} ${x.n}건"></i>`).join("");
-  $("#flow-key").innerHTML=list.map(x=>
-    `<li><i style="background:${x.c}"></i>${x.label}<b>${x.n}</b></li>`).join("");
-}
-
-/* ── 통화 기록 ── */
-const STATE={
-  ANSWERED   :["#12907B","통화 완료"],
-  UNCONFIRMED:["#9AA6BE","미응답"],
-  FAILED     :["#B62318","발신 실패"],
-  ACTION_REQUIRED:["#B62318","조치 필요"],
-  CALLING    :["#7B9BE4","통화 중"],
-};
-const A_LABEL={shelter:"쉼터",move:"단독이동",help:"도움",symptom:"증상"};
-const A_TEXT ={YES:"예",NO:"아니오",UNKNOWN:"확인 안 됨"};
-function aTone(k,v){
-  if(v==="UNKNOWN") return "off";
-  if(k==="symptom") return v==="YES" ? "flag" : "";
-  if(k==="help")    return v==="YES" ? "warm" : "";
-  if(k==="move")    return v==="NO"  ? "warm" : "";
-  return "";
-}
-function normalizeCall(raw){
-  const ended=raw.at??raw.ended_at??raw.endedAt??"—";
-  const time=String(ended).includes("T")?String(ended).split("T")[1].slice(0,5):String(ended);
-  return {
-    name:raw.name??raw.elderly_name??"이름 확인 전",
-    eid:raw.eid??raw.elderly_code??`E-${raw.elderly_id??"—"}`,
-    state:String(raw.state??raw.contact_status??"UNCONFIRMED").toUpperCase(),
-    at:time,
-    a:{
-      shelter:String(raw.a?.shelter??raw.shelter_intent??"UNKNOWN").toUpperCase(),
-      move:String(raw.a?.move??raw.can_move_alone??"UNKNOWN").toUpperCase(),
-      help:String(raw.a?.help??raw.help_needed??"UNKNOWN").toUpperCase(),
-      symptom:String(raw.a?.symptom??raw.symptom_mentioned??"UNKNOWN").toUpperCase(),
-    },
-    conf:Number(raw.conf??raw.confidence??0),
-    sum:raw.sum??raw.summary??"요약이 아직 생성되지 않았습니다.",
-  };
-}
-function renderCalls(rows){
-  const calls=(Array.isArray(rows)?rows:[]).map(normalizeCall);
-  $("#rows").innerHTML=calls.map(c=>{
-    const [col,lab]=STATE[c.state]||["#9AA6BE",c.state];
-    const ans=Object.keys(A_LABEL).map(k=>
-      `<div><dt>${A_LABEL[k]}</dt><dd class="${aTone(k,c.a[k])}">${esc(A_TEXT[c.a[k]]||c.a[k])}</dd></div>`).join("");
-    const summary=esc(c.sum);
-    const summaryMarkup=c.a.symptom==="YES"||c.state==="ACTION_REQUIRED"?`<em>${summary}</em>`:
-      c.state==="UNCONFIRMED"?`<s>${summary}</s>`:summary;
-    return `<tr>
-      <td><div class="nm"><b>${esc(c.name)}</b><span>${esc(c.eid)}</span></div></td>
-      <td><span class="state"><i style="background:${col}"></i>${esc(lab)}</span></td>
-      <td class="mono" style="color:var(--ink-3);font-size:12.5px">${esc(c.at)}</td>
-      <td><dl class="ans">${ans}</dl></td>
-      <td class="sum">${summaryMarkup}</td>
-      <td>${c.conf>0
-        ? `<span class="cf"><span class="tr"><span class="fl" style="width:${c.conf*100}%"></span></span><span>${Math.round(c.conf*100)}%</span></span>`
-        : `<span class="mono" style="color:var(--ink-4);font-size:11.5px">—</span>`}</td>
-    </tr>`;
-  }).join("");
-  return calls;
-}
-
-/* ── 쉼터 ── */
-function normalizeShelter(raw){
-  return {
-    name:raw.name??"이름 확인 전",addr:raw.addr??raw.address??"주소 확인 전",
-    open:Boolean(raw.open??raw.open_status==="OPEN"),walk:raw.walk??raw.walk_minutes,
-    assignedElders:raw.assignedElders??raw.assigned_elders??raw.assignments??[],
-  };
-}
-function renderShelters(list){
-  $("#shelters").innerHTML=(Array.isArray(list)?list:[]).map(normalizeShelter).map(s=>`
-    <li class="sh${s.open?"":" shut"}">
-      <div class="sh-top">
-        <div class="body"><b>${esc(s.name)}</b><span>${esc(s.addr)}</span></div>
-        <span class="w">${s.open?(s.walk!=null?`${esc(s.walk)}<i>분</i>`:"운영 중"):"오늘 미운영"}</span>
-      </div>
-      <div class="sh-people">${s.assignedElders.length?s.assignedElders.map(person=>`
-        <span class="sh-person"><i></i>${esc(person.name??person.elderly_name??"어르신")} <small>${esc(person.status??person.assignment_status??"배정")}</small></span>`).join(""):
-        `<span class="sh-person"><i style="background:var(--ink-4)"></i>배정된 어르신 없음</span>`}</div>
-    </li>`).join("");
-}
-
-function resolveCallCounts(today,calls){
-  const raw=today.callStatusCounts??today.call_status_counts;
-  if(raw)return {
-    done:raw.done??raw.ANSWERED??raw.answered??0,
-    act:raw.act??raw.ACTION_REQUIRED??raw.action_required??0,
-    none:raw.none??raw.UNCONFIRMED??raw.unconfirmed??0,
-    fail:raw.fail??raw.FAILED??raw.failed??0,
-  };
-  return calls.reduce((sum,c)=>{
-    if(c.state==="ANSWERED")sum.done++;
-    else if(c.state==="ACTION_REQUIRED")sum.act++;
-    else if(c.state==="FAILED")sum.fail++;
-    else sum.none++;
-    return sum;
-  },{done:0,act:0,none:0,fail:0});
-}
-
-function renderPhoneOverview(today,calls){
-  const counts=resolveCallCounts(today,calls);
-  const total=Number(today.calls??today.total_calls) || Object.values(counts).reduce((a,b)=>a+Number(b||0),0);
-  const answered=Number(today.answered??today.answered_calls) || Number(counts.done)+Number(counts.act);
-  $("#phone-title").textContent=`오늘 전화 ${total}통`;
-  $("#rate").textContent=total?Math.round(answered/total*100)+"%":"0%";
-  $("#rate-sub").textContent=`${answered} / ${total}통`;
-  renderDots(counts);
-}
-
-/* ML 위험도를 먼저 받아야 어르신 행의 위험 등급을 채울 수 있습니다. */
-async function refreshRisk(){
-  const button=$("#ml-refresh");
-  button.disabled=true;button.textContent="예측 중…";
-  try{
-    const snapshot=await loadRiskForecast();
-    renderMlRisk(snapshot);
-    if(snapshot){
-      // 지역 위험도가 바뀌면 어르신 행의 등급 표시도 따라갑니다.
-      ELDER_STATE=ELDER_STATE.map(e=>({...e,risk:String(snapshot.riskLevel||e.risk).toUpperCase()}));
-      renderElders();
-      notify(`ML 위험도를 갱신했습니다 · ${RISK_LABEL[String(snapshot.riskLevel).toUpperCase()]||snapshot.riskLevel}`);
-    }else{
-      notify("위험도 예측을 받지 못했습니다. 백엔드 연결을 확인하세요.");
-    }
-    renderSourceBanner();
-  }finally{
-    button.disabled=false;button.textContent="다시 예측";
-  }
-}
-$("#ml-refresh").addEventListener("click",refreshRisk);
+$("#call-all").addEventListener("click", startAllCalls);
 
 (async()=>{
-  const risk=await loadRiskForecast();
-  renderMlRisk(risk);
-
-  const [today,heat,elders,calls,flow,shelters]=await Promise.all(
-    ["today","heat","elders","calls","flow","shelters"].map(load));
-
-  const eldersArray=Array.isArray(elders)?elders:[];
-  ELDER_STATE=eldersArray.map(normalizeElder);
-
-  renderToday(today, SOURCE.elders?.real ? eldersArray.length : undefined);
-  renderRibbon(heat);
-  renderElders();
-  renderFlow(flow);
-  const normalizedCalls=renderCalls(calls);
-  renderPhoneOverview(today,normalizedCalls);
-  renderShelters(shelters);
-  renderSourceBanner();
-  $("#src").textContent=`데이터 · ${API_BASE}`;
+  await loadRisk();          // 어르신 행의 위험도 칩이 이 값을 쓰므로 먼저 받습니다.
+  loadElders();
+  loadObservations();
+  $("#src").textContent = `데이터 · ${API_BASE}`;
 })();
 </script>
 </body>
